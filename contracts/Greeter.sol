@@ -9,9 +9,13 @@ contract Greeter {
     uint x;
 
     constructor(string memory _greeting, uint _x) {
-      console.log("Deploying a Greeter with greeting:", _greeting);
+      console.log("Deploying a Greeter with greeting and x:", _greeting, _x);
       greeting = _greeting;
       x = _x;
+    }
+
+    function getX() public view returns(uint) {
+      return x;
     }
 
     function greet() public view returns (string memory) {
@@ -22,8 +26,8 @@ contract Greeter {
       x = x + value;
     }
 
-    function doubleX(uint value) public view returns(uint) {
-      return x << 1;
+    function doubleX() public view returns(uint) {
+      return x * 2;
     }
 
     function setGreeting(string memory _greeting) public {

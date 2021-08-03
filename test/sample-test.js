@@ -21,14 +21,14 @@ describe("Greeter", function () {
     const greeter = await Greeter.deploy("Hello, world!", 2);
     await greeter.deployed();
 
-    expect(await greeter.x).to.equal(2);
+    // expect(await greeter.x).to.equal(2);
 
     const addValueToXTx = await greeter.addValueToX(7);
 
     // wait until the transaction is mined
     await addValueToXTx.wait();
 
-    expect(await greeter.x).to.equal(9);
+    expect(await greeter.getX()).to.equal(9);
   });
 
   it("should double the value of x", async function () {
@@ -36,13 +36,10 @@ describe("Greeter", function () {
     const greeter = await Greeter.deploy("Hello, world!", 5);
     await greeter.deployed();
 
-    expect(await greeter.x).to.equal(5);
+    expect(await greeter.getX()).to.equal(5);
 
     const setGreetingTx = await greeter.doubleX();
 
-    // wait until the transaction is mined
-    await setGreetingTx.wait();
-
-    expect(await greeter.x).to.equal(10);
+    expect(setGreetingTx).to.equal(10);
   });
 });
